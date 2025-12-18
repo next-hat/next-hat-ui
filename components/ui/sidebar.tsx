@@ -1,10 +1,4 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
-import { PanelLeft } from "lucide-react"
-
-import { useIsMobile } from "@next-hat/ui/components/hooks/use-mobile"
-import { cn } from "@next-hat/ui/components/lib/utils"
 import { Button } from "@next-hat/ui/components/ui/button"
 import { Input } from "@next-hat/ui/components/ui/input"
 import { Separator } from "@next-hat/ui/components/ui/separator"
@@ -22,6 +16,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@next-hat/ui/components/ui/tooltip"
+import { useIsMobile } from "@next-hat/ui/hooks/use-mobile"
+import { cn } from "@next-hat/ui/lib/utils"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+import { PanelLeft } from "lucide-react"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
