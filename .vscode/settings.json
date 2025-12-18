@@ -21,8 +21,7 @@
   "rust-analyzer.checkOnSave": true,
   "rust-analyzer.check.command": "clippy",
   "rust-analyzer.cargo.noDefaultFeatures": true,
-  "prettier.configPath": "./webapp/prettier.config.js",
-  "rust-analyzer.linkedProjects": ["./api/Cargo.toml"],
+  "prettier.configPath": "./prettier.config.js",
   "files.associations": {
     "*.rs": "rust",
     "*.tsx": "typescriptreact",
