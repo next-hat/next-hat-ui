@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@next-hat/ui/lib/utils"
 
 function Skeleton({
   className,
