@@ -1,5 +1,4 @@
 import * as React from "react"
-
 import { cn } from "@next-hat/ui/lib/utils"
 
 const Card = React.forwardRef<

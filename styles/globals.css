@@ -4,8 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* @custom-variant dark (&:is(.dark *)); */
-
 @utility container {
   margin-inline: auto;
   padding-inline: 2rem;
@@ -74,7 +72,7 @@
   }
 
   /*Disable dark mode for now */
-  /*.dark {
+  .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -102,7 +100,7 @@
     --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
     --sidebar-border: hsl(240 3.7% 15.9%);
     --sidebar-ring: hsl(217.2 91.2% 59.8%);
-  }*/
+  }
 }
 
 @theme {
@@ -252,4 +250,8 @@ Not supports in Firefox and IE */
 /* set button(top and bottom of the scrollbar) */
 ::-webkit-scrollbar-button {
   display: none;
+}
+
+.react-flow__panel {
+  display: none !important;
 }

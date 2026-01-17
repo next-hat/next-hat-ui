@@ -10,10 +10,12 @@ import { NavMenuDesktop } from "./menu-desktop"
 import { NavMenuMobile, type NavMenuMobileProps } from "./menu-mobile"
 
 export function Header({
+  title = "Next Hat",
   items,
   menuChildren: headerMenuChildren,
   menuMobileChildren: headerMobileMenuChildren,
 }: {
+  title?: string
   items: NavItem[]
   menuChildren?: React.ReactNode
   menuMobileChildren?: (props: NavMenuMobileProps) => React.ReactNode
@@ -42,7 +44,7 @@ export function Header({
                       height={32}
                     />
                   </div>
-                  <b className="flex-auto text-[14px]">Next Hat</b>
+                  <b className="flex-auto text-[14px]">{title}</b>
                 </Link>
                 <div className="flex-row sm:flex hidden">
                   <NavMenuDesktop items={items} />
