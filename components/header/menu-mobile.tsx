@@ -46,7 +46,7 @@ export function NavMenuMobile(props: NavMenuMobileProps) {
                           href={child.href}
                           onClick={props.toggleMenu}
                           target={child.target}
-                          className="w-full p-2 font-medium text-sm text-gray-500"
+                          className="w-full p-2 font-medium text-sm text-muted-foreground"
                         >
                           <span>{child.title}</span>
                         </Link>

@@ -18,7 +18,7 @@ export function Footer({
           ))}
         </div>
       )}
-      <p className="text-sm border-t py-8 text-center text-[#606770]">
+      <p className="text-sm border-t py-8 text-center text-muted-foreground">
         &copy; {new Date().getFullYear()} Next Hat. All rights reserved.
       </p>
     </footer>

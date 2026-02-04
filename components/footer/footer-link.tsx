@@ -9,7 +9,11 @@ export type FooterLinkProps = {
 export function FooterLink(props: FooterLinkProps) {
   return (
     <li>
-      <Link className="text-[#606770]" href={props.href} target={props.target}>
+      <Link
+        className="text-muted-foreground hover:text-foreground transition-colors"
+        href={props.href}
+        target={props.target}
+      >
         {props.title}
       </Link>
     </li>
