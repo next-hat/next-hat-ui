@@ -1,8 +1,7 @@
 import * as React from "react"
-import { OTPInput, OTPInputContext } from "input-otp"
-import { Dot } from "lucide-react"
-
 import { cn } from "@next-hat/ui/lib/utils"
+import { OTPInput, OTPInputContext } from "input-otp"
+import { FaCircle } from "react-icons/fa"
 
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
@@ -61,7 +60,7 @@ const InputOTPSeparator = React.forwardRef<
   React.ComponentPropsWithoutRef<"div">
 >(({ ...props }, ref) => (
   <div ref={ref} role="separator" {...props}>
-    <Dot />
+    <FaCircle className="h-2 w-2 text-muted-foreground" />
   </div>
 ))
 InputOTPSeparator.displayName = "InputOTPSeparator"

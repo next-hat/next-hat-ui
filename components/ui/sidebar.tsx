@@ -20,7 +20,7 @@ import { useIsMobile } from "@next-hat/ui/hooks/use-mobile"
 import { cn } from "@next-hat/ui/lib/utils"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-import { PanelLeft } from "lucide-react"
+import { FiMenu } from "react-icons/fi"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -285,7 +285,7 @@ const SidebarTrigger = React.forwardRef<
       }}
       {...props}
     >
-      <PanelLeft />
+      <FiMenu />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )

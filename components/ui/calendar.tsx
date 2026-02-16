@@ -1,15 +1,10 @@
 "use client"
 
 import * as React from "react"
-import {
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "lucide-react"
-import { DayButton, DayPicker, getDefaultClassNames } from "react-day-picker"
-
-import { cn } from "@next-hat/ui/lib/utils"
 import { Button, buttonVariants } from "@next-hat/ui/components/ui/button"
+import { cn } from "@next-hat/ui/lib/utils"
+import { DayButton, DayPicker, getDefaultClassNames } from "react-day-picker"
+import { FiChevronDown, FiChevronLeft, FiChevronRight } from "react-icons/fi"
 
 function Calendar({
   className,
@@ -138,21 +133,18 @@ function Calendar({
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === "left") {
             return (
-              <ChevronLeftIcon className={cn("size-4", className)} {...props} />
+              <FiChevronLeft className={cn("size-4", className)} {...props} />
             )
           }
 
           if (orientation === "right") {
             return (
-              <ChevronRightIcon
-                className={cn("size-4", className)}
-                {...props}
-              />
+              <FiChevronRight className={cn("size-4", className)} {...props} />
             )
           }
 
           return (
-            <ChevronDownIcon className={cn("size-4", className)} {...props} />
+            <FiChevronDown className={cn("size-4", className)} {...props} />
           )
         },
         DayButton: CalendarDayButton,

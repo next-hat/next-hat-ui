@@ -1,10 +1,9 @@
-import { Loader2Icon } from "lucide-react"
-
 import { cn } from "@next-hat/ui/lib/utils"
+import { FiLoader } from "react-icons/fi"
 
 function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
   return (
-    <Loader2Icon
+    <FiLoader
       role="status"
       aria-label="Loading"
       className={cn("size-4 animate-spin", className)}

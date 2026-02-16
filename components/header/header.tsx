@@ -3,7 +3,7 @@
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Menu } from "lucide-react"
+import { FiMenu } from "react-icons/fi"
 
 import type { NavItem } from "."
 import { NavMenuDesktop } from "./menu-desktop"
@@ -56,7 +56,7 @@ export function Header({
                   onClick={toggleMenu}
                   className="flex w-6 h-6 sm:hidden sm:w-0 sm:h-0"
                 >
-                  <Menu
+                  <FiMenu
                     color="black"
                     className="transition-transform"
                     style={{
