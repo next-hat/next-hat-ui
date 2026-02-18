@@ -212,7 +212,8 @@ button {
 }
 
 .min-screen {
-  min-height: calc(100vh - 60px);
+  min-height: calc(100svh - 3.5rem);
+  box-sizing: border-box;
 }
 
 .header-screen {
