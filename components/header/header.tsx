@@ -18,6 +18,7 @@ export function Header({
   menuMobileChildren,
   variant = "default",
   homeHref = "/",
+  desktopNavigationStart,
 }: {
   title?: string
   items: NavItem[]
@@ -25,6 +26,7 @@ export function Header({
   menuMobileChildren?: (props: NavMenuMobileProps) => React.ReactNode
   variant?: "default" | "console"
   homeHref?: string
+  desktopNavigationStart?: React.ReactNode
 }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const panelId = React.useId()
@@ -47,9 +49,12 @@ export function Header({
             </Link>
             <div
               className={
-                variant === "console" ? "hidden xl:flex" : "hidden sm:flex"
+                variant === "console"
+                  ? "hidden min-w-0 items-center gap-3 xl:flex"
+                  : "hidden sm:flex"
               }
             >
+              {desktopNavigationStart}
               <NavMenuDesktop items={items} />
             </div>
           </div>
