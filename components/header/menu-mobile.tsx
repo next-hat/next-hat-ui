@@ -1,11 +1,17 @@
 import React from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@next-hat/ui/components/ui/accordion"
+import {
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@next-hat/ui/components/ui/sheet"
 
 import type { NavItem } from "."
 
@@ -13,63 +19,70 @@ export type NavMenuMobileProps = {
   visible: boolean
   items: NavItem[]
   toggleMenu: () => void
+  panelId?: string
   menuChildren?: (props: NavMenuMobileProps) => React.ReactNode
 }
 
 export function NavMenuMobile(props: NavMenuMobileProps) {
-  if (!props.visible) {
-    return null
-  }
+  const pathname = usePathname()
   return (
-    <div className="sm:hidden fixed top-15 border-t border-border h-full right-0 bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/70 w-full shadow-[0_1px_2px_0_rgba(0,0,0,0.1)] z-99">
-      <div className="flex items-center p-4 flex-col">
-        {props.menuChildren && props.menuChildren(props)}
-        {props.items.map((item, i) => {
+    <SheetContent
+      id={props.panelId}
+      side="right"
+      aria-describedby={undefined}
+      className="flex h-dvh w-full max-w-sm flex-col gap-5 overflow-y-auto pb-8 [&>button]:size-11 [&>button]:flex [&>button]:items-center [&>button]:justify-center"
+    >
+      <SheetHeader>
+        <SheetTitle>Navigation</SheetTitle>
+      </SheetHeader>
+      <nav aria-label="Main navigation" className="flex flex-col gap-1">
+        {props.items.map((item) => {
           const href = item.href || "/404"
-          if (item.children) {
+          if (item.children)
             return (
-              <Accordion
-                key={`${href}-${i}`}
-                type="single"
-                collapsible
-                className="w-full"
-              >
-                <AccordionItem value="item-1" className="border-0">
-                  <AccordionTrigger className="w-full flex border-b p-2 text-sm hover:no-underline font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-active:bg-accent/50 data-[state=open]:bg-accent/50">
-                    {item.title}
-                  </AccordionTrigger>
+              <Accordion key={item.title} type="single" collapsible>
+                <AccordionItem value={item.title} className="border-0">
+                  <AccordionTrigger>{item.title}</AccordionTrigger>
                   <AccordionContent className="flex flex-col">
-                    {(item.children || []).map((child) => {
-                      return (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          onClick={props.toggleMenu}
-                          target={child.target}
-                          className="w-full p-2 font-medium text-sm text-muted-foreground"
-                        >
-                          <span>{child.title}</span>
-                        </Link>
-                      )
-                    })}
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        target={child.target}
+                        onClick={props.toggleMenu}
+                        aria-current={
+                          pathname === child.href ||
+                          pathname.startsWith(`${child.href}/`)
+                            ? "page"
+                            : undefined
+                        }
+                        className="flex min-h-11 items-center px-3 aria-[current=page]:font-semibold aria-[current=page]:underline"
+                      >
+                        {child.title}
+                      </Link>
+                    ))}
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
             )
-          }
+          const active =
+            item.active ??
+            (pathname === href || pathname.startsWith(`${href}/`))
           return (
             <Link
-              key={i}
+              key={href}
               href={href}
-              onClick={props.toggleMenu}
               target={item.target}
-              className="w-full border-b p-2 group inline-flex h-10 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-active:bg-accent/50 data-[state=open]:bg-accent/50"
+              onClick={props.toggleMenu}
+              aria-current={active ? "page" : undefined}
+              className="flex min-h-11 items-center rounded-md px-3 text-sm hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring aria-[current=page]:bg-accent aria-[current=page]:font-semibold aria-[current=page]:underline"
             >
-              <span>{item.title}</span>
+              {item.title}
             </Link>
           )
         })}
-      </div>
-    </div>
+      </nav>
+      {props.menuChildren?.(props)}
+    </SheetContent>
   )
 }

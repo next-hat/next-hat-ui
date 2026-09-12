@@ -6,6 +6,7 @@ export type NavItemChild = {
 }
 
 export type NavItem = {
+  active?: boolean
   title: string
   href?: string | null
   target?: React.HTMLAttributeAnchorTarget

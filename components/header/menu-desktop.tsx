@@ -17,11 +17,12 @@ import type { NavItem } from "."
 const ListItem = React.forwardRef<
   React.ComponentRef<"a">,
   React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, href, target }, ref) => {
+>(({ className, title, children, href, target, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
         <Link
+          {...props}
           ref={ref}
           href={href || "/404"}
           target={target}
@@ -67,9 +68,13 @@ export function NavMenuDesktop({ items }: { items: NavItem[] }) {
                           title={child.title}
                           href={child.href}
                           target={child.target}
-                          style={
-                            pathname === child.href ? { color: "orange" } : {}
+                          aria-current={
+                            pathname === child.href ||
+                            pathname.startsWith(`${child.href}/`)
+                              ? "page"
+                              : undefined
                           }
+                          className="aria-[current=page]:font-semibold aria-[current=page]:underline"
                         >
                           {child.description}
                         </ListItem>
@@ -85,8 +90,13 @@ export function NavMenuDesktop({ items }: { items: NavItem[] }) {
               <Link
                 href={href}
                 target={item.target}
-                className={`${navigationMenuTriggerStyle()} bg-transparent`}
-                style={pathname === href ? { color: "orange" } : {}}
+                className={`${navigationMenuTriggerStyle()} bg-transparent aria-[current=page]:bg-accent aria-[current=page]:font-semibold aria-[current=page]:underline`}
+                aria-current={
+                  (item.active ??
+                  (pathname === href || pathname.startsWith(`${href}/`)))
+                    ? "page"
+                    : undefined
+                }
               >
                 {item.title}
               </Link>
