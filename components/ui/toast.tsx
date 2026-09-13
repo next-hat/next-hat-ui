@@ -1,6 +1,6 @@
 import * as React from "react"
 import { cn } from "@next-hat/ui/lib/utils"
-import * as ToastPrimitives from "@radix-ui/react-toast"
+import { Toast as ToastPrimitives } from "radix-ui"
 import { cva, type VariantProps } from "class-variance-authority"
 import { FiX } from "react-icons/fi"
 
