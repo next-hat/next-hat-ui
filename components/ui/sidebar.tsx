@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import { Slot } from "radix-ui"
 
-import { useIsMobile } from "@next-hat/ui/components/hooks/use-mobile"
+import { useIsMobile } from "@next-hat/ui/hooks/use-mobile"
 import { Button } from "@next-hat/ui/components/ui/button"
 import { Input } from "@next-hat/ui/components/ui/input"
 import { Separator } from "@next-hat/ui/components/ui/separator"
