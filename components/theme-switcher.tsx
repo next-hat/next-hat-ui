@@ -1,28 +1,45 @@
 "use client"
 
+import type { ComponentProps } from "react"
 import { Button } from "@next-hat/ui/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@next-hat/ui/components/ui/dropdown-menu"
+import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
-import { FiMoon, FiSun } from "react-icons/fi"
 
-export function ThemeSwitcher() {
-  const { resolvedTheme, setTheme } = useTheme()
-
-  const toggleTheme = () => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark")
-  }
+export function ThemeSwitcher({
+  className,
+  variant = "outline",
+  size = "icon",
+}: Pick<ComponentProps<typeof Button>, "className" | "variant" | "size">) {
+  const { theme, setTheme } = useTheme()
 
   return (
-    <Button
-      className="h-12 w-12"
-      variant="outline"
-      size="icon"
-      onClick={toggleTheme}
-      aria-label="Toggle theme"
-      title="Toggle theme"
-    >
-      <FiSun className="h-[1.1rem] w-[1.1rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-      <FiMoon className="absolute h-[1.1rem] w-[1.1rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          type="button"
+          className={className}
+          variant={variant}
+          size={size}
+          aria-label="Toggle theme"
+        >
+          <Sun aria-hidden="true" className="dark:hidden" />
+          <Moon aria-hidden="true" className="hidden dark:block" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
+          <DropdownMenuRadioItem value="light">Light</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="system">System</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
